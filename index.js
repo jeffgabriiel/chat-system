@@ -14,7 +14,7 @@ io.on('connection',(socket)=>{
 
     socket.on('new user',function(data){
 
-        if(usuarios.indexOf(data) != -1){
+        if(usuarios.indexOf(data) != -1){ //verificação se há outro user igual ao escolhido
             socket.emit('new user',{success: false});
         }else{
             usuarios.push(data);

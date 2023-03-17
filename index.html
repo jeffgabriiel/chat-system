@@ -83,11 +83,11 @@
 
     socket.emit('new user', nome);
 
-    socket.on('new user', function (data) {
+    socket.on('new user', function(data){
 
-        if (data.success) {
+        if(data.success){
             alert('Bem-vindo ao Danki Chat ' + nome);
-        } else {
+        }else{
             alert('Já existe usuário com este nome....');
             window.location.href = "/";
         }
@@ -110,15 +110,16 @@
         if (obj.nome == nome) {
             //coloco a mensagem com uma cor.
             var item = document.createElement('li');
-            item.style.backgroundColor = 'gray';
-            item.textContent = obj.nome + ' disse: ' + obj.msg;
+            item.style.backgroundColor = 'green';
+            item.textContent = obj.nome + ': ' + obj.msg;
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
 
         } else {
             //coloco com outra.
             var item = document.createElement('li');
-            item.textContent = obj.nome + ' disse: ' + obj.msg;
+            item.style.backgroundColor = 'gray';
+            item.textContent = obj.nome + ': ' + obj.msg;
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         }
