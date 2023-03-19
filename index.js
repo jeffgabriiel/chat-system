@@ -1,10 +1,22 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 var usuarios = [];
-
 var socketIds = [];
+
+http.listen(3000, () => {
+    console.log('listening on *:3000');
+});
+
+//________interligando com a pasta public para usar css, img, views, etc.________
+const path = require('path');
+app.engine('html', require('ejs').renderFile); // não está usando
+app.set('view engine', 'html'); // não está usando                     
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '/views')); // não está usando
+//_______________________________________________________________________________
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
@@ -43,6 +55,3 @@ io.on('connection',(socket)=>{
     });
 });
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
-});
